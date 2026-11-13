@@ -1,0 +1,21 @@
+name: Update prices
+on:
+  schedule:
+    - cron: "10 * * * *"   # every hour at :10 (UTC)
+  workflow_dispatch:        # lets you run it manually
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install requests
+      - run: python build.py
+      - run: |
+          git config user.name "price-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add index.html
+          git diff --cached --quiet || (git commit -m "Update prices" && git push)
