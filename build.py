@@ -7,7 +7,7 @@ import re, csv, io, html, json, datetime
 import requests
 
 CSV_URL = "https://pricelist.gsmshop.at/mobil_en_new.csv"
-MARKUP = 1.06          # +6 %
+MARKUP = 1.07          # +7 %
 OUTPUT = "index.html"
 
 STAMP = re.compile(r"Time Stamp:\s*([\d.]+\s+[\d:]+)")
